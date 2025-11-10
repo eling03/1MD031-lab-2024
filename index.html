@@ -1,1 +1,120 @@
-Hello world
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Nom nom burgers</title>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<header><h1>Välkommen till Nom Nom Burgers!</h1> </header>
+<section>Här kan du hitta de godaste hamburgarna i hela Luthagen. Våra slagord är "kvalitet före kvanitet". <p>Kika in menyn här online eller sväng förbi hemma på Götgatan 11! </section>
+
+<div style="display: inline-block"><h2>Feta fransyskan</h2>
+<img src="/img/Fetaburger.jpg" alt="Feta fransyskan burger" title="Feta fransyskan" style="width: 200px">
+    <dl>
+        <dt>Med smak av:</dt>
+        <ul>
+            <li>Karamelliserad lök</li>
+            <li>Brynt smök</li>
+            <li>Provencalska kryddor</li>
+            <li>Saftigt kött</li>
+            <li>Smält gouda</li>
+            <li>Briochebröd</li>
+        </ul>
+        <dt>Allergener:</dt>
+        <ul>
+            <li>Laktos</li>
+            <li>Gluten</li>
+            <li>Nöttkött</li>
+        </ul>
+        <dt>Pris(utan meny/med meny):</dt>
+        <dd>129/149 kr</dd>
+    </dl>
+</div><div style="display: inline-block"><h2>Väldigt veggie</h2>
+    <img src="/img/veryveggie.webp" alt="Vegitarisk burgare" title="Väldigt veggie" style="width: 200px">
+    <dl>
+        <dt>Med smak av:</dt>
+        <ul>
+            <li>Färsk, krispig sallad</li>
+            <li>Rödlök</li>
+            <li>Saftig rödbets-"biff"</li>
+            <li>Jalapeño-"mayo"</li>
+            <li>Avocado</li>
+            <li>Friscobröd</li>
+        </ul>
+        <dt>Allergener:</dt>
+        <ul>
+            <li>Gluten</li>
+        </ul>
+        <dt>Pris(utan meny/med meny):</dt>
+        <dd>119/139 kr</dd>
+    </dl>
+</div><div style="display: inline-block"><h2>Krispig kyckling</h2>
+    <img src="/img/kyckling.jpeg" alt="Krispig kyckling burgare" title="Kycklingburgare" style="width: 200px">
+    <dl>
+        <dt>Med smak av:</dt>
+        <ul>
+            <li>Krispigt friterad kyckling</li>
+            <li>Coleslaw</li>
+            <li>Smält gouda</li>
+            <li>Picklad rödlök</li>
+            <li>Briochebröd</li>
+        </ul>
+        <dt>Allergener:</dt>
+        <ul>
+            <li>Laktos</li>
+            <li>Gluten</li>
+            <li>Kyckling</li>
+        </ul>
+        <dt>Pris(utan meny/med meny):</dt>
+        <dd>129/149 kr</dd>
+    </dl>
+</div>
+
+<h3>Fyll i uppgifter nedan för online-beställning!</h3>
+Maten är redo inom ca 20 minuter från beställning.
+<p>
+    <label for="name">Fullständigt namn</label><br>
+    <input type="text" id="name" name="fn" required="required" placeholder="För- och efternamn">
+</p>
+<p>
+    <label for="email">E-mail</label><br>
+    <input type="text" id="email" name="em" required="required" placeholder="E-mail">
+</p>
+<p>
+    <label for="Gata">Gatuadress</label><br>
+    <input type="text" id="Gata" name="em" required="required" placeholder="Gata">
+</p>
+<p>
+    <label for="Gatunummer">Gatunummer</label><br>
+    <input type="number" id="Gatunummer" name="em" required="required" placeholder="Nummer">
+</p>
+<p>
+    <label for="recipient">Recipient</label><be>
+    <select id="recipient" name="rcp">
+        <option selected="selected">Swish</option>
+        <option>Bankkort online</option>
+        <option>Betala på plats (kort)</option>
+        <option>Betala på plats (kontanter)</option>
+    </select>
+</p>
+<p>
+    <label for="Kön">Kön</label><br>
+    <input type="radio" id="kvinna" name="kon" value="kvinna" checked="checked">
+    <label for="kvinna">Kvinna</label><br>
+
+    <input type="radio" id="man" name="kon" value="man" required>
+    <label for="man">Man</label><br>
+
+    <input type="radio" id="annat" name="kon" value="annat">
+    <label for="annat">Vill ej svara</label>
+</p>
+<button type="submit">
+    <img src="/img/hungry.jpeg" style="width: 100px">
+    Skicka beställning
+</button>
+<footer>
+<hr>
+    Yeyyur
+</footer>
+</body>
+</html>
