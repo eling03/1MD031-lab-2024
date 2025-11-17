@@ -1,23 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Cormorant:wght@700&display=swap');
 body {
     font-size: 12pt;
-}
-
-p {
-    color: red;
+    font-family: Arial, sans-serif;
 }
 
 h1 {
     font-family: 'Agbalumo';
     font-size: 36pt;
 }
-main, header, footer, nav ul {
+ footer, nav ul {
     max-width: 40rem;
     margin: 0 auto 0 auto;
 }
-main {
-    background-color: bisque;
-}
+
 
 /* nav ul li {
     display: inline-block;
@@ -27,18 +22,26 @@ main {
 } */
 
 header {
-    background-image: url("../img/polacks.jpg");
     background-size: cover;
     overflow: hidden;
-    width: 100%;
-    height: 200px;
-    opacity: 0.5;
+    height: 300px;
+    margin: 50px 20px 50px 20px;
 }
 
+header img {
+    height: auto;
+    width: 100%;
+    opacity: 0.5;
+    object-fit: cover;
+    object-position: 50% -200px;
+}
+
+
 header h1 {
-    width:40rem;
     margin: 0 auto;
     text-align: center;
+    position: absolute;
+    margin-top: -700px;
 }
 
 nav ul {
@@ -61,4 +64,49 @@ nav li {
 .Master {
     color: green;
     font-weight: bold;
+}
+
+.allergier {
+   margin-left: 0px;
+   font-weight: bold;
+   border: none;
+}
+
+
+#burgare-info {
+    background-color: mistyrose;
+    color: black;
+}
+
+button:hover {
+   color: green;
+}
+
+section {
+    margin: 50px 20px 50px 20px;
+    border: 5px solid pink;
+
+}
+
+button {
+    margin-left: 20px;
+    margin-top: -35px;
+}
+
+div {
+    padding: 20px 20px ;
+    margin: 10px 80px 10px 80px;
+}
+
+.wrapper {
+    margin-left: -10px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 450px 450px 450px;
+}
+
+
+div img{
+    height: 250px;
+    width: 220px;
 }

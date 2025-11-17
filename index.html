@@ -1,36 +1,43 @@
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" href="/Users/elingranljung/Documents/Gränssnittsprogrammering/1MD031-lab-2024/public/css/style.css">
     <title>Nom nom burgers</title>
     <meta charset="utf-8"/>
 </head>
 <body>
-<header><h1>Välkommen till Nom Nom Burgers!</h1> </header>
-<section>Här kan du hitta de godaste hamburgarna i hela Luthagen. Våra slagord är "kvalitet före kvanitet". <p>Kika in menyn här online eller sväng förbi hemma på Götgatan 11! </section>
-
-<section><div style="display: inline-block"><h2>Feta fransyskan</h2>
-<img src="/img/Fetaburger.jpg" alt="Feta fransyskan burger" title="Feta fransyskan" style="width: 200px">
-    <dl>
+<header>
+    <img src="public/img/eatburger.avif" alt="Header image">
+        <h1>Välkommen till Nom Nom Burgers!</h1>
+</header>
+<main>
+<section id="burgare-info">
+    <div class="wrapper">
+    <div>
+        <h2>Feta fransyskan</h2>
+        <img src="/img/Fetaburger.jpg" alt="Feta fransyskan burger" title="Feta fransyskan">
+     <dl>
         <dt>Med smak av:</dt>
         <ul>
             <li>Karamelliserad lök</li>
-            <li>Brynt smök</li>
+            <li>Brynt smör</li>
             <li>Provencalska kryddor</li>
             <li>Saftigt kött</li>
             <li>Smält gouda</li>
             <li>Briochebröd</li>
         </ul>
-        <dt>Allergener:</dt>
-        <ul>
+        <section class="allergier">
+            <dt>Allergener:</dt><ul>
             <li>Laktos</li>
             <li>Gluten</li>
             <li>Nöttkött</li>
-        </ul>
-        <dt>Pris(utan meny/med meny):</dt>
-        <dd>129/149 kr</dd>
+        </ul></section>
+         <p>Pris: 129 kr</p>
     </dl>
-</div><div style="display: inline-block"><h2>Väldigt veggie</h2>
-    <img src="/img/veryveggie.webp" alt="Vegitarisk burgare" title="Väldigt veggie" style="width: 200px">
+</div>
+<div>
+    <h2>Väldigt veggie</h2>
+    <img src="/img/veryveggie.webp" alt="Vegitarisk burgare" title="Väldigt veggie">
     <dl>
         <dt>Med smak av:</dt>
         <ul>
@@ -41,15 +48,17 @@
             <li>Avocado</li>
             <li>Friscobröd</li>
         </ul>
-        <dt>Allergener:</dt>
-        <ul>
+
+        <section class="allergier">
+            <dt class="allergier">Allergener:</dt>
+            <ul>
             <li>Gluten</li>
-        </ul>
-        <dt>Pris(utan meny/med meny):</dt>
-        <dd>119/139 kr</dd>
+        </ul></section>
+        <p>Pris: 119 kr</p>
     </dl>
-</div><div style="display: inline-block"><h2>Krispig kyckling</h2>
-    <img src="/img/kyckling.jpeg" alt="Krispig kyckling burgare" title="Kycklingburgare" style="width: 200px">
+</div>
+<div><h2>Krispig kyckling</h2>
+    <img src="/img/kyckling.jpeg" alt="Krispig kyckling burgare" title="Kycklingburgare">
     <dl>
         <dt>Med smak av:</dt>
         <ul>
@@ -59,20 +68,21 @@
             <li>Picklad rödlök</li>
             <li>Briochebröd</li>
         </ul>
-        <dt>Allergener:</dt>
+    <section class="allergier"><dt>Allergener:</dt>
         <ul>
             <li>Laktos</li>
             <li>Gluten</li>
             <li>Kyckling</li>
-        </ul>
-        <dt>Pris(utan meny/med meny):</dt>
-        <dd>129/149 kr</dd>
+        </ul></section>
+        <p>Pris: 129 kr</p>
     </dl>
-</div></section>
+    </div>
+    </div>
+</section>
 
 <section><h3>Fyll i uppgifter nedan för online-beställning!</h3>
-Maten är redo inom ca 20 minuter från beställning.</section>
-<section><p>
+Maten är redo inom ca 20 minuter från beställning.
+<p>
     <label for="name">Fullständigt namn</label><br>
     <input type="text" id="name" name="fn" required="required" placeholder="För- och efternamn">
 </p>
@@ -89,7 +99,7 @@ Maten är redo inom ca 20 minuter från beställning.</section>
     <input type="number" id="Gatunummer" name="em" required="required" placeholder="Nummer">
 </p>
 <p>
-    <label for="recipient">Recipient</label><be>
+    <label for="recipient">Betalsätt</label><br>
     <select id="recipient" name="rcp">
         <option selected="selected">Swish</option>
         <option>Bankkort online</option>
@@ -107,11 +117,13 @@ Maten är redo inom ca 20 minuter från beställning.</section>
 
     <input type="radio" id="annat" name="kon" value="annat">
     <label for="annat">Vill ej svara</label>
-</p>
+</p></section>
+
 <button type="submit">
     <img src="/img/hungry.jpeg" alt="Hungrig smiley" style="width: 100px">
     Skicka beställning
-</button></section>
+</button>
+</main>
 <footer>
 <hr>
     &copy; 2025 Nom Nom Burgers.
