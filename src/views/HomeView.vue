@@ -6,11 +6,12 @@
         <h1>Välkommen till Nom Nom Burgers!</h1>
 </header>
 <main>
+<p>Välj och vraka!</p>
 <section id="burgare-info">
         <div class="wrapper">
           <Burger v-for="burger in burgers"
                   :burger="burger"
-                  :key="burger.name"
+                  :key="burger.name + '-' + resetKey"
                   @orderedBurger="addToOrder"
                   />
     </div>
@@ -26,18 +27,19 @@ Maten är redo inom ca 20 minuter från beställning.
     <label for="email">E-mail</label><br>
     <input type="text" id="email" name="em" required="required" v-model="orderForm.email" placeholder="E-mail">
 </p>
-<p>
-    <label for="Gata">Gatuadress</label><br>
-    <input type="text" id="Gata" name="em" required="required" v-model="orderForm.street" placeholder="Gata">
-</p>
-<p>
-    <label for="Gatunummer">Gatunummer</label><br>
-    <input type="number" id="Gatunummer" name="em" required="required" v-model="orderForm.number" placeholder="Nummer">
-</p>
-<div id="kartobjektet">
-    <div id="map" v-on:click="addOrder">
-</div>
-</div>
+<p> Markera önskad leveransplats på kartan nedan:</p>
+<section id="kartobjekt">
+  <div id="map" @click="setLocation">
+
+    <div
+      v-if="hasClicked"
+      class="target"
+      :style="{ left: location.x + 'px', top: location.y + 'px' }"
+    >
+      T
+    </div>
+  </div>
+</section>
 <p>
     <label for="recipient">Betalsätt</label><br>
     <select id="recipient" v-model="orderForm.payment" name="rcp">
@@ -59,10 +61,11 @@ Maten är redo inom ca 20 minuter från beställning.
     <label for="annat">Vill ej svara</label>
 </p></section>
 
-<button type="submit" @click="submitOrder">
-    <img src="/img/hungry.jpeg" alt="Hungrig smiley">
-    Skicka beställning
+<button type="button" @click="addOrder">
+  <img src="/img/hungry.jpeg" alt="Hungrig smiley">
+  Skicka beställning
 </button>
+
 
 </main>
 <footer>
@@ -97,43 +100,72 @@ export default {
   },
   data: function () {
     return {
-      location: { x: 0, y: 0 },
       burgers: menu,
       orderedBurgers: {},
       orderForm: {
               name: '',
               email: '',
-              street: '',
-              number: '',
               payment: 'Swish',
               gender: 'kvinna'
-            }
+            },
+       location: { x: 0, y: 0 },
+       hasClicked: false,
+       resetKey: 0
             }
 
   },
-  methods: {
-    getOrderNumber: function () {
-      return Math.floor(Math.random()*100000);
-    },
-    addOrder: function (event) {
-      var offset = {x: event.currentTarget.getBoundingClientRect().left,
-                    y: event.currentTarget.getBoundingClientRect().top};
-      socket.emit("addOrder", { orderId: this.getOrderNumber(),
-                                details: { x: event.clientX - 10 - offset.x,
-                                           y: event.clientY - 10 - offset.y },
-                                orderItems: ["Beans", "Curry"]
-                              }
-                 );
-    },
-    submitOrder() {
-        console.log("Order Form Values:", this.orderForm);
-        console.log("Current ordered burgers:", this.orderedBurgers);
-      },
-     addToOrder(event) {
-         this.orderedBurgers[event.name] = event.amount;
-         console.log("Current ordered burgers:", this.orderedBurgers);
-       }
-  }
+ methods: {
+   getOrderNumber() {
+     return Math.floor(Math.random() * 100000);
+   },
+
+   setLocation(e) {
+     const rect = e.currentTarget.getBoundingClientRect();
+     this.location.x = Math.round(e.clientX - rect.left - 82);
+     this.location.y = Math.round(e.clientY - rect.top - 10);
+     this.hasClicked = true;
+
+     console.log('Plats vald:', this.location);
+   },
+
+  addOrder() {
+    const orderItems = Object.fromEntries(
+      Object.entries(this.orderedBurgers || {}).filter(([_, amount]) => amount > 0)
+
+    );
+
+    const payload = {
+      orderId: this.getOrderNumber(),
+      details: { x: this.location.x, y: this.location.y },
+      orderItems,
+      customer: {
+        name: this.orderForm.name,
+        email: this.orderForm.email,
+        payment: this.orderForm.payment,
+        gender: this.orderForm.gender
+      }
+    };
+
+    console.log('Skickar addOrder:', payload);
+    socket.emit('addOrder', payload);
+    this.orderForm = {
+      name: '',
+      email: '',
+      payment: 'Swish',
+      gender: 'kvinna'
+    };
+    this.orderedBurgers = {};
+    this.location = { x: 0, y: 0 };
+    this.hasClicked = false;
+    this.resetKey++;
+  },
+
+
+   addToOrder(event) {
+     this.orderedBurgers[event.name] = event.amount;
+     console.log("Current ordered burgers:", this.orderedBurgers);
+   }
+ }
 }
 </script>
 
@@ -257,17 +289,26 @@ div img{
      width: 2000px;
 }
 
-#kartobjektet {
+#kartobjekt {
   width: auto;
   height: 600px;
   overflow: scroll;
-  
- 
+  margin-top: -20px;
 }
 
 #map {
+  position: relative;
   width: 1920px;
   height: 1072px;
-  background: url("/img/polacks.jpg") ; }
+  background: url("/img/polacks.jpg");
+  cursor: crosshair;
+}
 
+#map .target {
+  position: absolute;
+  font-weight: 700;
+  user-select: none;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
 </style>

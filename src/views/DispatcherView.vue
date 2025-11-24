@@ -1,43 +1,62 @@
 <template>
-    <div id="orders">
-      <div id="orderList">
-        <div v-for="(order, key) in orders" v-bind:key="'order'+key">
-          #{{ key }}: {{ order.orderItems.join(", ") }}
+  <div id="orders">
+
+    <div id="orderList">
+      <div
+        v-for="(order, key) in orders"
+        :key="'order' + key"
+        class="orderrow"
+      >
+        <strong>#{{ key }}</strong>
+        <span> — {{ formatItems(order.orderItems) }}</span>
+        <div v-if="order.customer" class="customer">
+          {{ order.customer.name }} , {{ order.customer.email }} ,
+          {{ order.customer.payment }} , {{ order.customer.gender }}
         </div>
-        <button v-on:click="clearQueue">Clear Queue</button>
       </div>
-      <div id="dots">
-          <div v-for="(order, key) in orders" v-bind:style="{ left: order.details.x + 'px', top: order.details.y + 'px'}" v-bind:key="'dots' + key">
-            {{ key }}
-          </div>
+
+      <button @click="clearQueue">Clear Queue</button>
+    </div>
+    <div id="dots">
+      <div
+        v-for="(order, key) in orders"
+        :key="'dot' + key"
+        class="dot"
+        :style="{ left: order.details.x+ 'px', top: order.details.y + 'px' }"
+      >
+         {{ order.orderId}}
       </div>
     </div>
-  </template>
+  </div>
+</template>
   <script>
   import io from 'socket.io-client'
   const socket = io("localhost:3000");
   
   export default {
     name: 'DispatcherView',
-    data: function () {
-      return {
-        orders: null,
-      }
+    data() {
+      return { orders: {} };
     },
-    created: function () {
-      socket.on('currentQueue', data =>
-        this.orders = data.orders);
+    created() {
+      socket.on('currentQueue', data => {
+        console.log('currentQueue', data);
+        this.orders = data.orders || {};
+      });
     },
     methods: {
-      clearQueue: function () {
-        socket.emit('clearQueue');
+      formatItems(obj) {
+        if (!obj) return '';
+        return Object.entries(obj)
+          .map(([name, amount]) => `${name} (${amount})`)
+          .join(', ');
       },
-      changeStatus: function(orderId) {
-        socket.emit('changeStatus', {orderId: orderId, status: "Annan status"});
-
-      }
+      clearQueue() {
+          socket.emit('clearQueue');
+          this.orders = {};
+        }
     }
-  }
+    }
   </script>
   <style>
   #orderList {
@@ -68,6 +87,9 @@
     width:20px;
     height:20px;
     text-align: center;
+    padding-right: 40px;
   }
+
+
   </style>
   
