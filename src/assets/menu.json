@@ -1,21 +1,32 @@
-[{
-    "name": "Veggie Bliss", 
-    "kCal": 500, 
-    "url": "https://images-bonnier.imgix.net/files/ifo/production/20220412084608/Kødfri-burger-1.jpg?auto=compress,format&w=1024%201024w",
-    "lactose": false, 
-    "gluten": false
-},
-{
-    "name": "Veggie Bliss", 
-    "kCal": 500, 
-    "url": "https://images-bonnier.imgix.net/files/ifo/production/20220412084608/Kødfri-burger-1.jpg?auto=compress,format&w=1024%201024w",
-    "lactose": false, 
-    "gluten": false
-},
-{
-    "name": "Veggie Bliss", 
-    "kCal": 500, 
-    "url": "https://images-bonnier.imgix.net/files/ifo/production/20220412084608/Kødfri-burger-1.jpg?auto=compress,format&w=1024%201024w",
-    "lactose": false, 
-    "gluten": false
-}]
+[
+    {
+        "name": "Feta fransyskan",
+        "url": "Fetaburger.jpg",
+        "kCal": 780,
+        "ingredients": ["Karamelliserad lök", "Brynt smör", "Provencalska kryddor", "Saftigt kött", "Smält gouda", "Briochebröd"],
+        "gluten": true,
+        "lactose": true,
+        "meat": "Nötkött",
+        "price": 129
+    },
+    {
+        "name": "Väldigt veggie",
+        "url": "veryveggie.webp",
+        "kCal": 650,
+        "ingredients": ["Färsk, krispig sallad", "Rödlök", "Saftig rödbets-'biff'", "Jalapeño-'mayo'", "Avocado", "Friscobröd"],
+        "gluten": true,
+        "lactose": false,
+        "meat": null,
+        "price": 119
+    },
+    {
+        "name": "Krispig kyckling",
+        "url": "kyckling.jpeg",
+        "kCal": 630,
+        "ingredients": ["Krispigt friterad kyckling", "Coleslaw", "Smält gouda", "Picklad rödlök", "Briochebröd"],
+        "gluten": true,
+        "lactose": true,
+        "meat": "Kyckling",
+        "price": 129
+    }
+]
